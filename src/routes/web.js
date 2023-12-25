@@ -10,6 +10,6 @@ router.get("/abc", (req, res) => {
   res.send("ABC!");
 });
 
-router.get("/hoidanit",example);
+router.get("/hoidanit", example);
 
 module.exports = router;
