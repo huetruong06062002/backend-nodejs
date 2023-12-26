@@ -1,9 +1,9 @@
 const express = require("express");
-const { homePage, example, postCreateUser, getCreatePage } = require("../controllers/homeController");
+const { getHomePage, example, postCreateUser, getCreatePage } = require("../controllers/homeController");
 const router = express.Router();
 
 //Khai báo route
-router.get("/", homePage);
+router.get("/", getHomePage);
 
 router.get("/abc", (req, res) => {
   res.send("ABC!");
