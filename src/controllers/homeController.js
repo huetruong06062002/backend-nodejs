@@ -34,7 +34,15 @@ const postCreateUser = async (req, res) => {
 };
 
 const getCreatePage = (req, res) => {
-  res.render("create");
+  res.render("create.ejs");
 };
 
-module.exports = { getHomePage, example, postCreateUser, getCreatePage };
+const getUpdatePage = (req, res) => {
+  const userId = req.params.id
+  console.log(">>> req.params::", req.params, userId);
+  res.render("edit.ejs");
+};
+
+
+
+module.exports = { getHomePage, example, postCreateUser, getCreatePage, getUpdatePage };
