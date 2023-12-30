@@ -23,9 +23,9 @@ configViewEngine(app);
 app.use("/", webRouter);
 
 //test connection
+connection();
 
 
-// simple query
 app.listen(port, hostname, () => {
   console.log(`Example app listening on port ${port}`);
 });
