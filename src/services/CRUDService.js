@@ -20,9 +20,6 @@ const updateUserByid = async (email, myname, city, userId) => {
         SET email = ?, name= ?, city= ? WHERE id = ?`,
     [email, myname, city, userId]
   );
-
-
-
 };
 
 module.exports = {
