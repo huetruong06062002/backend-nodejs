@@ -1,11 +1,13 @@
 const connection = require("../config/database");
-const User = require("../models/User");
+
 const {
   getAllUsers,
   getUserById,
   updateUserByid,
   deleteUserById,
 } = require("../services/CRUDService");
+
+const User = require("../models/User");
 
 const getHomePage = async (req, res) => {
   let results = await User.find({});
@@ -19,24 +21,6 @@ const example = (req, res) => {
 const postCreateUser = async (req, res) => {
   let { email, myname, city } = req.body;
   console.log(">>> req.body", email, myname, city);
-  // INSERT INTO Users  (email, name, city)
-  // VALUES ("test", "eric", "hoidainit");
-
-  // with placeholder
-  // connection.query(
-  //   `INSERT INTO Users  (email, name, city)
-  //   VALUES (?, ?, ?);`,
-  //   [email, myname, city],
-  //   function(err, results) {
-  //     console.log(results);
-  //   }
-  // );
-
-  // let [result, fileds] = await connection.query(
-  //   `INSERT INTO Users  (email, name, city) VALUES (?, ?, ?);`,
-  //   [email, myname, city]
-  // );
-
   await User.create({ email: email, name: myname, city: city });
 
   res.redirect("/");
