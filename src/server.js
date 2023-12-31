@@ -4,7 +4,8 @@ const path = require("path");
 const configViewEngine = require("./config/viewEngine");
 const webRouter = require("./routes/web");
 const connection = require("./config/database");
-const mongoose = require('mongoose'); 
+
+
 
 const port = process.env.PORT || 8888; //route
 const hostname = process.env.HOST_NAME;
@@ -22,17 +23,6 @@ configViewEngine(app);
 //Khai báo route
 app.use("/", webRouter);
 
-//test connection
-
-//shape data
-const kittySchema = new mongoose.Schema({
-  name: String
-});
-
-const abc = mongoose.model('Kitten', kittySchema);
-
-const cat = new abc({ name: 'Hoi Dan It Cat abc' });
-cat.save();
 
 (async() => {
   try{
