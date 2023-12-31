@@ -24,12 +24,14 @@ app.use("/", webRouter);
 
 //test connection
 
+//shape data
 const kittySchema = new mongoose.Schema({
   name: String
 });
 
-const Kitten = mongoose.model('Kitten', kittySchema);
-const cat = new Kitten({ name: 'Hoi Dan It Cat' });
+const abc = mongoose.model('Kitten', kittySchema);
+
+const cat = new abc({ name: 'Hoi Dan It Cat abc' });
 cat.save();
 
 (async() => {
