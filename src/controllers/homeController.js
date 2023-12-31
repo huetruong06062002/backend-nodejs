@@ -9,7 +9,7 @@ const {
 
 
 const getHomePage = async (req, res) => {
-  let results = [];
+  let results = await User.find({});
   return res.render("home.ejs", { listUsers: results });
 };
 
@@ -39,10 +39,10 @@ const postCreateUser = async (req, res) => {
   // );
 
   await User.create(
-    {email, name: myname, city,}
+    {email: email, name: myname, city: city}
   );
 
-  res.send("Create user sucess");
+  res.redirect("/");
 };
 
 const getCreatePage = (req, res) => {
