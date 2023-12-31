@@ -12,17 +12,12 @@ router.get("/abc", (req, res) => {
 router.get("/hoidanit", example);
 
 router.get("/create", getCreatePage);
-
-router.get("/update/:id", getUpdatePage);
-
-
-
 router.post("/create-user", postCreateUser);
 
+router.get("/update/:id", getUpdatePage);
 router.post("/update-user", postUpdateUser);
 
 router.post("/delete-user/:userId", postDeleteUser);
-
 router.post("/delete-user", postUserRemoveUser);
 
 module.exports = router;//export default
