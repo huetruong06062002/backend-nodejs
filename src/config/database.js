@@ -20,13 +20,17 @@ const dbState = [{
 }];
 
 const connection = async() => {
-  try {
-    await mongoose.connect('mongodb://root:123456@localhost:27017/hoidanit_nodejs?authSource=admin');
+  
+    const options = {
+      user: process.env.DB_USER,
+      pass: process.env.DB_PASSWORD,
+      dbName: process.env.DB_NAME,
+    }
+
+    await mongoose.connect(process.env.DB_HOST, options);
     const state = Number(mongoose.connection.readyState);
     console.log(dbState.find(f => f.value == state).label, "to db"); // connected to db
-  } catch (error) {
-    console.log(">>>Error connection DB", error);
-  }
+
 }
 
 
