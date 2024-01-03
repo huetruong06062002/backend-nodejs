@@ -4,6 +4,7 @@ const path = require("path");
 const configViewEngine = require("./config/viewEngine");
 const webRouter = require("./routes/web");
 const apiRoutes = require("./routes/api");
+const fileUpload = require('express-fileupload');
 
 const connection = require("./config/database");
 
@@ -12,8 +13,15 @@ const connection = require("./config/database");
 const port = process.env.PORT || 8888; //route
 const hostname = process.env.HOST_NAME;
 
+
+
+
+
 // app.Method("router", handle)
 const app = express(); //app express
+
+//config file upload
+app.use(fileUpload());
 
 //config req.body
 app.use(express.json()); //for json
