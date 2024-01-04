@@ -17,7 +17,7 @@ const customerSchema = new mongoose.Schema(
   }
 );
 
-const Customer = mongoose.model("user", customerSchema);
+const Customer = mongoose.model("customer", customerSchema);
 
 
 
