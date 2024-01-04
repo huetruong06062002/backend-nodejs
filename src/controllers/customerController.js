@@ -4,6 +4,7 @@ const { uploadSingleFile } = require("../services/FileService");
 const {
   createCustomerService,
   createArrayCustomerService,
+  getAllCustomersService,
 } = require("../services/customerService");
 
 module.exports = {
@@ -43,12 +44,25 @@ module.exports = {
         EC: 0,
         data: customers,
       });
-    }else{
-        return res.status(200).json({
-            EC: -1,
-            data: customers,
-          });
+    } else {
+      return res.status(200).json({
+        EC: -1,
+        data: customers,
+      });
     }
-   
+  },
+  getAllCustomers: async (req, res) => {
+    let result = await getAllCustomersService();
+    if (customers) {
+      return res.status(200).json({
+        EC: 0,
+        data: result,
+      });
+    } else {
+      return res.status(200).json({
+        EC: -1,
+        data: null,
+      });
+    }
   },
 };
