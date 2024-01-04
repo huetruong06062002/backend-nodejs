@@ -2,7 +2,7 @@ const express = require("express");
 
 const routerAPI = express.Router();
 
-const {getUsersApi, postCreateUserApi, putUpdateUserAPI, deleteAUserAPI, postUploadSingleFileApi} = require("../controllers/apiController");
+const {getUsersApi, postCreateUserApi, putUpdateUserAPI, deleteAUserAPI, postUploadSingleFileApi, postUploadMultipleFilesApi} = require("../controllers/apiController");
 
 
 routerAPI.get("/", (req, res) => {
@@ -20,6 +20,7 @@ routerAPI.delete("/users", deleteAUserAPI);
 
 routerAPI.post("/file", postUploadSingleFileApi);
 
+routerAPI.post("/files", postUploadMultipleFilesApi);
 
 
 
