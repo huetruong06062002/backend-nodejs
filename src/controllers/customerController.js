@@ -5,7 +5,9 @@ const {
   createCustomerService,
   createArrayCustomerService,
   getAllCustomersService,
-  putUpdateCustomerService
+  putUpdateCustomerService,
+  deleteCustomerService,
+  deleteArrCustomerService
 } = require("../services/customerService");
 
 module.exports = {
@@ -53,8 +55,24 @@ module.exports = {
     }
   },
   getAllCustomers: async (req, res) => {
-    let result = await getAllCustomersService();
+    let customers = await getAllCustomersService();
     if (customers) {
+      return res.status(200).json({
+        EC: 0,
+        data: customers,
+      });
+    } else {
+      return res.status(200).json({
+        EC: -1,
+        data: null,
+      });
+    }
+  },
+  putUpdateCustomers: async (req, res) => {
+    const { id, name, email, address } = req.body;
+    console.log("check", id, name, email, address);
+    let result = await putUpdateCustomerService(id, name, email, address);
+    if (result) {
       return res.status(200).json({
         EC: 0,
         data: result,
@@ -66,19 +84,23 @@ module.exports = {
       });
     }
   },
-  putUpdateCustomers: async (req, res) => {
-    const {id, name, email, address} = req.body;
-    console.log("check", id, name, email, address);
-    let result = await putUpdateCustomerService(id, name, email, address);
+  deleteACustomer: async (req, res) => {
+    let id = req.body.id;
+    let result = await deleteCustomerService(id);
+    if (result) {
+      return res.status(200).json({
+        EC: 0,
+        data: result,
+      });
+    }
+  },
+  deleteArrCustomer: async (req, res) => { 
+    let {customersId}  = req.body;
+    let result = await deleteArrCustomerService(customersId);
     if (result) {
         return res.status(200).json({
           EC: 0,
           data: result,
-        });
-      } else {
-        return res.status(200).json({
-          EC: -1,
-          data: null,
         });
       }
   }
