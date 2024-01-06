@@ -27,52 +27,59 @@ const createArrayCustomerService = async (arr) => {
   }
 };
 
-const getAllCustomersService = async (limit, page) => {
-    try {
-        let result = null;
-        if(limit && page){
-          let offset = (page - 1 ) * limit;
-          result = await Customer.find({}).skip(offset).limit(limit).exec();
-        }else{
-           result = await Customer.find({});
-        }
-        return result;
-    } catch (error) {
-        console.log(error);
-        return null;
+const getAllCustomersService = async (limit, page, name) => {
+  try {
+    let result = null;
+    if (limit && page) {
+      let offset = (page - 1) * limit;
+      if (name) {
+        result = await Customer.find({ name: { $regex: ".*" + name + ".*" } })
+          .skip(offset)
+          .limit(limit)
+          .exec();
+      }
+    } else {
+      result = await Customer.find({});
     }
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 };
 
-const putUpdateCustomerService = async ( id, name, email, address) => {
-    try {
-        let result = await Customer.updateOne({_id: id}, {name: name, email: email, address: address});
-        return result;
-    } catch (error) {
-        console.log(error);
-        return null;
-    }
-}
-
+const putUpdateCustomerService = async (id, name, email, address) => {
+  try {
+    let result = await Customer.updateOne(
+      { _id: id },
+      { name: name, email: email, address: address }
+    );
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
 
 const deleteCustomerService = async (id) => {
-    try {
-        let result = await Customer.deleteById(id);
-        return result;
-    } catch (error) {
-        console.log(error);
-        return null;
-    }
-}
+  try {
+    let result = await Customer.deleteById(id);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
 
-const deleteArrCustomerService = async(arrId) => {
-    try {
-        let result = await Customer.delete({_id: { $in: arrId}});
-        return result;
-    } catch (error) {
-        console.log(error);
-        return null;
-    }
-}
+const deleteArrCustomerService = async (arrId) => {
+  try {
+    let result = await Customer.delete({ _id: { $in: arrId } });
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
 
 module.exports = {
   createCustomerService,
@@ -80,5 +87,5 @@ module.exports = {
   getAllCustomersService,
   putUpdateCustomerService,
   deleteCustomerService,
-  deleteArrCustomerService
+  deleteArrCustomerService,
 };

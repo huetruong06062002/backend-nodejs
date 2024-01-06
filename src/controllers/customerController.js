@@ -55,10 +55,10 @@ module.exports = {
     }
   },
   getAllCustomers: async (req, res) => {
-    let { limit, page } = req.query;
+    let { limit, page, name } = req.query;
     let customers = null;
     if (limit && page) {
-      customers = await getAllCustomersService(limit, page);
+      customers = await getAllCustomersService(limit, page, name);
     } else {
       customers = await getAllCustomersService();
     }
