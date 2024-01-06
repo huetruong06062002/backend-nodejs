@@ -10,6 +10,8 @@ const {
   deleteArrCustomerService,
 } = require("../services/customerService");
 
+
+
 module.exports = {
   postCreateCustomer: async (req, res) => {
     //req.body only get text , can't get file
@@ -58,7 +60,7 @@ module.exports = {
     let { limit, page, name } = req.query;
     let customers = null;
     if (limit && page) {
-      customers = await getAllCustomersService(limit, page, name);
+      customers = await getAllCustomersService(limit, page, name, req.query);
     } else {
       customers = await getAllCustomersService();
     }
