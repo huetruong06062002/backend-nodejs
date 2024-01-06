@@ -46,11 +46,14 @@ app.use("/v1/api/", apiRoutes);
     await client.connect();
     console.log('Connected successfully to server');
 
-    
-    const db = client.db(dbName);
-    const collection = db.collection('documents');
 
-    await connection();
+    const db = client.db(dbName);
+    const collection = db.collection('customers');
+
+    // collection.insertOne({"address" : "hcm", email: "hoidanit@gmail.com"});
+    // collection.insertOne({test: [1, 2, 3]});
+    console.log("find: ", await collection.find({address: "hcm"}));
+
     app.listen(port, hostname, () => {
       console.log(`Backend app listening on port ${port}`);
     });
